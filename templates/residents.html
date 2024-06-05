@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Резиденты{% endblock %}
+
+{% block content %}
+    <style>
+        .content-wrapper {
+            min-height: calc(100vh - 56px - 100px); /* 56px - высота навбара, 100px - высота футера и отступ */
+        }
+        footer {
+            margin-top: 40px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tabs button {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+    <section class="residents">
+        <h2>Резиденты</h2>
+        <div class="tabs">
+            <button>сфера 1</button>
+            <button>сфера 2</button>
+            <button>сфера 3</button>
+        </div>
+        <div class="row">
+            {% for resident in residents %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="placeholder">
+                                {{ resident }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

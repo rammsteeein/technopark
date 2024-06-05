@@ -7,6 +7,14 @@
     <title>{% block title %}Технопарк{% endblock %}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {% block styles %}{% endblock %}
+    <style>
+        .content-wrapper {
+            min-height: calc(100vh - 56px - 100px); /* 56px - высота навбара, 100px - высота футера и отступ */
+        }
+        footer {
+            margin-top: 40px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -21,10 +29,10 @@
                     <a class="nav-link" href="/about">О технопарке</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Услуги</a>
+                    <a class="nav-link" href="/services">Услуги</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Резиденты</a>
+                    <a class="nav-link" href="/residents">Резиденты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Контакты</a>
@@ -42,7 +50,7 @@
     </div>
 
     <!-- Футер -->
-    <footer class="bg-secondary text-white text-center py-3 fixed-bottom">
+    <footer class="bg-secondary text-white text-center py-3">
         &copy; 2024 Технопарк. Все права защищены.
     </footer>
 
@@ -51,15 +59,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Подключение Materialize JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <!-- Инициализация карусели Materialize -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.carousel');
-            var instances = M.Carousel.init(elems, options);
-        });
-    </script>
 </body>
 </html>

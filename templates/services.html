@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+    <style>
+        .grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .placeholder {
+            background: #e0e0e0;
+            height: 150px;
+        }
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tabs button {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+    <section class="services">
+        <h2>Сервисы</h2>
+        <div class="grid grid-4">
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+
+    <section class="profiles">
+        <h2>Анкеты</h2>
+        <div class="tabs">
+            <button>площади есть</button>
+            <button>ищу помещение</button>
+            <button>сервисы</button>
+        </div>
+        <div class="grid grid-2">
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+
+    <section class="rental">
+        <h2>Аренда</h2>
+        <div class="grid grid-2">
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+
+    <section class="support-measures">
+        <h2>Меры господдержки</h2>
+        <div class="grid grid-3">
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+        </div>
+    </section>
+{% endblock %}
