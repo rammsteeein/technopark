@@ -3,8 +3,101 @@
 {% block title %}Технопарк{% endblock %}
 
 {% block content %}
+    <style>
+        .content-wrapper {
+            min-height: calc(100vh - 56px - 100px); /* 56px - высота навбара, 100px - высота футера и отступ */
+        }
+        footer {
+            margin-top: 40px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tabs button {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+        .img-thumbnail {
+            border: none;
+        }
+        .no-wrap {
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            /* Image Thumbnails */
+            .img-thumbnail {
+                width: 150px;
+                height: auto;
+            }
+            .container.mt-2.d-flex.justify-content-center {
+                flex-direction: column;
+                align-items: center;
+            }
+            .container.mt-2 .row {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            /* Services */
+            .container.my-4 .row .col-3 {
+                flex: 1 0 50%;
+            }
+            .card-body {
+                font-size: 16px;
+            }
+            .container.my-4 h2 {
+                text-align: center;
+            }
+            .container.my-4 .row {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .container.my-4 .row .card {
+                min-width: 45%;
+                height: auto;
+            }
+            .container.my-4 .row .card-body {
+                height: auto;
+                padding: 1rem;
+            }
+            .container.my-4 .row .card-body p {
+                white-space: normal;
+                overflow: visible;
+            }
+            /* Partners */
+            .carousel-inner .col {
+                width: 50%;
+                max-width: 50%;
+            }
+            /* News slider */
+            .news .row {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .news .row .card {
+                min-width: 80%;
+                margin-right: 10px;
+            }
+        }
+        @media (min-width: 769px) {
+            /* Services */
+            .container.my-4 .row {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+        }
+    </style>
+
     <!-- Slider -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 600px; overflow: hidden;">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -33,7 +126,7 @@
 
     <!-- Image Thumbnails -->
     <div class="container mt-2 d-flex justify-content-center">
-        <div class="row" style="max-width: 60%;">
+        <div class="row" style="max-width: 60%; overflow-x: auto;">
             <div class="col">
                 <img src="static/images/1.jpg" alt="Thumbnail 1" class="img-thumbnail opacity-1" onclick="showImage(0)">
             </div>
@@ -51,16 +144,16 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card bg-light">
-                    <div class="card-body">
-                        <h5 class="card-title">Резидент Технопарка</h5>
+                    <div class="card-body no-wrap">
+                        <h5 class="card-title no-wrap">Резидент Технопарка</h5>
                         <p class="card-text">Описание</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="card bg-light">
-                    <div class="card-body">
-                        <h5 class="card-title">Резидент Сколково</h5>
+                    <div class="card-body no-wrap">
+                        <h5 class="card-title no-wrap">Резидент Сколково</h5>
                         <p class="card-text">Описание</p>
                     </div>
                 </div>
@@ -81,67 +174,41 @@
         <h2>Сервисы</h2>
         <div class="row">
             {% for service in services %}
-            <div class="col-3 {% if loop.index > 4 %}mt-4{% endif %}">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <p class="card-text">{{ service }}</p>
+                {% if loop.index <= 4 %}
+                    <div class="col-3">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <p class="card-text">{{ service }}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
 
     <!-- Events and News Section -->
-    <div class="container my-4">
-        <nav class="navbar navbar-light">
-            <h2>События и новости</h2>
-            <div class="ml-auto">
-                <button class="btn btn-secondary">Тема 1</button>
-                <button class="btn btn-secondary">Тема 2</button>
-                <button class="btn btn-secondary">Тема 3</button>
-            </div>
-        </nav>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <p class="card-text">Новость 1</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <p class="card-text">Новость 2</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card bg-light">
-                    <div class="card-body">
-                        <p class="card-text">Новость 3</p>
-                    </div>
-                </div>
-            </div>
+    <section class="news">
+        <h2>События и новости</h2>
+        <div class="tabs">
+            <button>тема 1</button>
+            <button>тема 2</button>
+            <button>тема 3</button>
         </div>
-    </div>
-
-    <!-- Residents Section -->
-    <div class="container my-4">
-        <h2>Резиденты</h2>
         <div class="row">
-            {% for resident in residents %}
+            {% for news in news %}
                 <div class="col-md-3">
-                    <div class="card bg-light">
+                    <div class="card">
                         <div class="card-body">
-                            <p class="card-text">{{ resident }}</p>
+                            <div class="placeholder">
+                                {{ news }}
+                            </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-    </div>
+    </section>
 
     <!-- Video Section -->
     <div class="container my-4">
@@ -151,37 +218,74 @@
         </div>
     </div>
 
-     <!-- Отображение 8 картинок в одной строке на всю ширину блока -->
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
-                <img src="static/images/1.jpg" alt="Image 1" class="img-fluid">
+        <h2>Партнеры</h2>
+        <div id="partnersCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <img src="static/images/1.jpg" alt="Image 1" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="static/images/2.jpg" alt="Image 2" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="static/images/3.jpg" alt="Image 3" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="static/images/4.jpg" alt="Image 4" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <img src="static/images/5.jpg" alt="Image 5" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="static/images/6.jpg" alt="Image 6" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="static/images/7.jpg" alt="Image 7" class="img-fluid">
+                        </div>
+                        <div class="col">
+                            <img src="static/images/8.jpg" alt="Image 8" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                <img src="static/images/2.jpg" alt="Image 2" class="img-fluid">
-            </div>
-            <div class="col">
-                <img src="static/images/3.jpg" alt="Image 3" class="img-fluid">
-            </div>
-            <div class="col">
-                <img src="static/images/4.jpg" alt="Image 4" class="img-fluid">
-            </div>
-            <div class="col">
-                <img src="static/images/5.jpg" alt="Image 5" class="img-fluid">
-            </div>
-            <div class="col">
-                <img src="static/images/6.jpg" alt="Image 6" class="img-fluid">
-            </div>
-            <div class="col">
-                <img src="static/images/7.jpg" alt="Image 7" class="img-fluid">
-            </div>
-            <div class="col">
-                <img src="static/images/8.jpg" alt="Image 8" class="img-fluid">
-            </div>
+            <a class="carousel-control-prev" href="#partnersCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#partnersCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 
     <script>
+        $('#partnersCarousel').on('slide.bs.carousel', function (e) {
+            var $e = $(e.relatedTarget);
+            var idx = $e.index();
+            var itemsPerSlide = 4;
+            var totalItems = $('.carousel-item').length;
+
+            if (idx >= totalItems-(itemsPerSlide-1)) {
+                var it = itemsPerSlide - (totalItems - idx);
+                for (var i=0; i<it; i++) {
+                    // append slides to end
+                    if (e.direction=="left") {
+                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                    } else {
+                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                    }
+                }
+            }
+        });
+
         function showImage(index) {
             $('.img-thumbnail').addClass('opacity-0_5').removeClass('opacity-1');
             $('.img-thumbnail').eq(index).addClass('opacity-1').removeClass('opacity-0_5');

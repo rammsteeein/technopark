@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Мероприятия{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Изображение мероприятия -->
+    <div class="my-4">
+        <h2>Изображение мероприятия</h2>
+        <div class="img-placeholder bg-light d-flex justify-content-center align-items-center" style="height: 400px;">
+            <span class="text-muted">Здесь будет изображение</span>
+        </div>
+    </div>
+
+    <!-- Описание мероприятия -->
+    <div class="my-4">
+        <h2>Описание</h2>
+        <div class="bg-light p-4">
+            <p class="text-muted">Здесь будет описание мероприятия.</p>
+        </div>
+    </div>
+
+    <!-- Кнопка регистрации -->
+    <div class="my-4 d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary">Записаться</button>
+    </div>
+</div>
+{% endblock %}

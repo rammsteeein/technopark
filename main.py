@@ -9,7 +9,8 @@ def index():
         'Сервис 1', 'Сервис 2', 'Сервис 3', 'Сервис 4',
         'Сервис 5', 'Сервис 6', 'Сервис 7', 'Сервис 8'
     ]
-    return render_template('index.html', services=services)
+    news = [f'Новость {i}' for i in range(1, 5)]
+    return render_template('index.html', services=services, news=news)
 
 
 @app.route('/about')
@@ -37,6 +38,17 @@ def contacts():
 @app.route('/become_resident')
 def become_resident():
     return render_template('become_resident.html')
+
+
+@app.route('/events')
+def events():
+    return render_template('events.html')
+
+
+@app.route('/map')
+def maps():
+    residents = [f'Резидент {i}' for i in range(1, 17)]
+    return render_template('map.html', residents=residents)
 
 
 if __name__ == '__main__':
