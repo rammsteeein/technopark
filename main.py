@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Предположим, что у вас есть список сервисов
     services = [
         'Сервис 1', 'Сервис 2', 'Сервис 3', 'Сервис 4',
         'Сервис 5', 'Сервис 6', 'Сервис 7', 'Сервис 8'
@@ -28,6 +27,16 @@ def residents_page():
     residents = [f'Резидент {i}' for i in range(1, 33)]
 
     return render_template('residents.html', residents=residents)
+
+
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
+
+
+@app.route('/become_resident')
+def become_resident():
+    return render_template('become_resident.html')
 
 
 if __name__ == '__main__':

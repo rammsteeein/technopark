@@ -84,22 +84,4 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- Подключение API Яндекс.Карт -->
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script type="text/javascript">
-    ymaps.ready(init);
-    function init() {
-        var myMap = new ymaps.Map("map", {
-            center: [52.603230, 39.570760], // Координаты Липецка
-            zoom: 17
-        });
-
-        var myPlacemark = new ymaps.Placemark([52.603230, 39.570760], {
-            hintContent: 'Технопарк',
-            balloonContent: '398017, Россия, г. Липецк, ул. 9 Мая, вл. 27'
-        });
-
-        myMap.geoObjects.add(myPlacemark);
-    }
-</script>
 {% endblock %}
